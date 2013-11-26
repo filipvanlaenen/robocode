@@ -207,8 +207,8 @@ public class BulletPeer {
 
 	private void checkWallCollision() {
 		if ((x - RADIUS <= 0) || (y - RADIUS <= 0) || (x + RADIUS >= battleRules.getBattlefieldWidth())
-				|| (y + RADIUS >= battleRules.getBattlefieldHeight()) 
-				|| ((x - RADIUS <= battleRules.getBattlefieldWidth() /2 ) && (x + RADIUS >= battleRules.getBattlefieldWidth() /2) && (y >= 50) && ( y <= battleRules.getBattlefieldHeight() - 50) )) {
+				|| (y + 2*RADIUS >= battleRules.getBattlefieldHeight()) 
+				|| ((x - 2*RADIUS <= battleRules.getBattlefieldWidth() /2 ) && (x + 2*RADIUS >= battleRules.getBattlefieldWidth() /2) && (y >= 50) && ( y <= battleRules.getBattlefieldHeight() - 50) )) {
 			state = BulletState.HIT_WALL;
 			frame = 0;
 			owner.addEvent(new BulletMissedEvent(createBullet(false)));

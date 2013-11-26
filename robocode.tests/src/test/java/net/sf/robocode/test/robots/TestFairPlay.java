@@ -11,6 +11,7 @@ package net.sf.robocode.test.robots;
 import net.sf.robocode.test.helpers.RobocodeTestBed;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import robocode.control.events.BattleFinishedEvent;
@@ -26,6 +27,7 @@ public class TestFairPlay extends RobocodeTestBed {
 
 	ITurnSnapshot lastTurnSnapshot;
 
+	@Ignore
 	@Test
 	public void run() {
 		super.run();
