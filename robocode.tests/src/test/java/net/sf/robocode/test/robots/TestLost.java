@@ -11,6 +11,7 @@ package net.sf.robocode.test.robots;
 import net.sf.robocode.test.helpers.RobocodeTestBed;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import robocode.control.events.TurnEndedEvent;
 import robocode.control.snapshot.IRobotSnapshot;
@@ -23,6 +24,7 @@ public class TestLost extends RobocodeTestBed {
 	private int lost = 0;
 	private int end = 0;
 
+	@Ignore
 	@Test
 	public void run() {
 		super.run();

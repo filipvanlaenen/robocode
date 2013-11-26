@@ -12,6 +12,8 @@ package net.sf.robocode.test.robots;
 import net.sf.robocode.test.helpers.Assert;
 import net.sf.robocode.test.helpers.RobocodeTestBed;
 import static org.hamcrest.CoreMatchers.is;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import robocode.control.events.RoundStartedEvent;
 import robocode.control.events.TurnEndedEvent;
@@ -26,6 +28,7 @@ import robocode.control.snapshot.IRobotSnapshot;
 public class TestPosition extends RobocodeTestBed {
 	int lastTurn;
 
+	@Ignore
 	@Test
 	public void run() {
 		super.run();

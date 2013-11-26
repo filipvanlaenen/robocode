@@ -11,6 +11,7 @@ package net.sf.robocode.test.robots;
 import net.sf.robocode.test.helpers.RobocodeTestBed;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import robocode.BattleResults;
 import robocode.control.events.BattleCompletedEvent;
@@ -26,6 +27,7 @@ public class TestWin extends RobocodeTestBed {
 	private BattleResults[] results; 
 	private StringBuffer outputBuf = new StringBuffer();
 	
+	@Ignore
 	@Test
 	public void run() {
 		super.run();
