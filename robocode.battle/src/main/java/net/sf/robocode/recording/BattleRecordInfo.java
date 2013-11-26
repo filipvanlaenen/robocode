@@ -16,6 +16,7 @@ import net.sf.robocode.serialization.XmlReader;
 import net.sf.robocode.serialization.XmlWriter;
 import robocode.BattleResults;
 import robocode.BattleRules;
+import robocode.control.RectangularBattlefieldSpecification;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -44,8 +45,7 @@ public class BattleRecordInfo implements Serializable, IXmlSerializable {
 				writer.writeAttribute("ver", serialVersionUID);
 			}
 			writer.startElement("rules"); {
-				writer.writeAttribute("battlefieldWidth", battleRules.getBattlefieldWidth());
-				writer.writeAttribute("battlefieldHeight", battleRules.getBattlefieldHeight());
+				writer.writeAttribute("battlefieldSpecification", battleRules.getBattlefieldSpecification().toProperty());
 				writer.writeAttribute("numRounds", battleRules.getNumRounds());
 				writer.writeAttribute("gunCoolingRate", battleRules.getGunCoolingRate(), options.trimPrecision);
 				writer.writeAttribute("inactivityTime", battleRules.getInactivityTime());
@@ -288,14 +288,9 @@ public class BattleRecordInfo implements Serializable, IXmlSerializable {
 					new XmlReader.ElementClose() {
 				public IXmlSerializable read(XmlReader reader) {
 
-					reader.expect("battlefieldWidth", new XmlReader.Attribute() {
+					reader.expect("battlefieldSpecification", new XmlReader.Attribute() {
 						public void read(String value) {
-							props.setBattlefieldWidth(Integer.parseInt(value));
-						}
-					});
-					reader.expect("battlefieldHeight", new XmlReader.Attribute() {
-						public void read(String value) {
-							props.setBattlefieldHeight(Integer.parseInt(value));
+							props.setBattlefieldSpecification(RectangularBattlefieldSpecification.parseProperty(value));
 						}
 					});
 
@@ -319,8 +314,7 @@ public class BattleRecordInfo implements Serializable, IXmlSerializable {
 				}
 
 				public void close() {
-					recinfo.battleRules = HiddenAccess.createRules(props.getBattlefieldWidth(),
-							props.getBattlefieldHeight(), props.getNumRounds(), props.getGunCoolingRate(),
+					recinfo.battleRules = HiddenAccess.createRules(props.getBattlefieldSpecification(), props.getNumRounds(), props.getGunCoolingRate(),
 							props.getInactivityTime(), props.getHideEnemyNames(), props.getSentryBorderSize());
 				}
 			});

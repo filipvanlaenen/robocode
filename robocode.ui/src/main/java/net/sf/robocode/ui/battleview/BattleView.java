@@ -671,7 +671,7 @@ public class BattleView extends Canvas {
 		public void onBattleStarted(BattleStartedEvent event) {
 			battleRules = event.getBattleRules();
 			
-			battleField = new BattleField(battleRules.getBattlefieldWidth(), battleRules.getBattlefieldHeight());
+			battleField = new BattleField(battleRules.getBattlefieldSpecification().getWidth(), battleRules.getBattlefieldSpecification().getHeight());
 
 			initialized = false;
 			setVisible(true);

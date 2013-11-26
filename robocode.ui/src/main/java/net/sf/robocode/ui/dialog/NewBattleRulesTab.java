@@ -16,6 +16,8 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import robocode.control.RectangularBattlefieldSpecification;
+
 import net.sf.robocode.battle.BattleProperties;
 import net.sf.robocode.settings.ISettingsManager;
 
@@ -428,8 +430,7 @@ public class NewBattleRulesTab extends JPanel {
 			settingsManager.setBattleDefaultBattlefieldWidth(weight);
 			settingsManager.setBattleDefaultBattlefieldHeight(height);
 			
-			battleProperties.setBattlefieldWidth(weight);
-			battleProperties.setBattlefieldHeight(height);			
+			battleProperties.setBattlefieldSpecification(new RectangularBattlefieldSpecification(weight, height));
 		}
 
 		@Override
@@ -444,8 +445,7 @@ public class NewBattleRulesTab extends JPanel {
 				updateBattlefieldSizeLabel();
 
 			} else if (event.getSource() == restoreDefaultsButton) {
-				battleProperties.setBattlefieldWidth(800);
-				battleProperties.setBattlefieldHeight(600);
+				battleProperties.setBattlefieldSpecification(new RectangularBattlefieldSpecification(800, 600));
 				battleProperties.setNumRounds(10);
 				battleProperties.setGunCoolingRate(0.1);
 				battleProperties.setInactivityTime(450);
@@ -463,8 +463,8 @@ public class NewBattleRulesTab extends JPanel {
 		}
 
 		private void pushBattlePropertiesToUIComponents() {
-			battlefieldWidthSlider.setValue(battleProperties.getBattlefieldWidth());
-			battlefieldHeightSlider.setValue(battleProperties.getBattlefieldHeight());
+			battlefieldWidthSlider.setValue(battleProperties.getBattlefieldSpecification().getWidth());
+			battlefieldHeightSlider.setValue(battleProperties.getBattlefieldSpecification().getHeight());
 			updateBattlefieldSizeLabel();
 
 			getNumberOfRoundsTextField().setText("" + battleProperties.getNumRounds());

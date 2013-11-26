@@ -8,6 +8,7 @@
 package robocode;
 
 
+import robocode.control.BattlefieldSpecification;
 import net.sf.robocode.security.IHiddenRulesHelper;
 
 
@@ -28,31 +29,19 @@ import net.sf.robocode.security.IHiddenRulesHelper;
 public final class BattleRules implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private final int battlefieldWidth;
-	private final int battlefieldHeight;
 	private final int numRounds;
 	private final double gunCoolingRate;
 	private final long inactivityTime;
 	private final boolean hideEnemyNames;
 	private final int sentryBorderSize;
 
-	/**
-	 * Returns the battlefield width.
-	 *
-	 * @return the battlefield width.
-	 */
-	public int getBattlefieldWidth() {
-		return battlefieldWidth;
+	private final BattlefieldSpecification battlefieldSpecification;
+
+	public BattlefieldSpecification getBattlefieldSpecification() {
+		return battlefieldSpecification;
 	}
 
-	/**
-	 * Returns the battlefield height.
-	 *
-	 * @return the battlefield height.
-	 */
-	public int getBattlefieldHeight() {
-		return battlefieldHeight;
-	}
+	
 
 	/**
 	 * Returns the number of rounds.
@@ -123,10 +112,9 @@ public final class BattleRules implements java.io.Serializable {
 		return sentryBorderSize;
 	}
 	
-	private BattleRules(int battlefieldWidth, int battlefieldHeight, int numRounds, double gunCoolingRate,
+	private BattleRules(BattlefieldSpecification battlefieldSpecification, int numRounds, double gunCoolingRate,
 			long inactivityTime, boolean hideEnemyNames, int sentryBorderSize) {
-		this.battlefieldWidth = battlefieldWidth;
-		this.battlefieldHeight = battlefieldHeight;
+		this.battlefieldSpecification = battlefieldSpecification;
 		this.numRounds = numRounds;
 		this.gunCoolingRate = gunCoolingRate;
 		this.inactivityTime = inactivityTime;
@@ -140,9 +128,21 @@ public final class BattleRules implements java.io.Serializable {
 
 	private static class HiddenHelper implements IHiddenRulesHelper {
 
-		public BattleRules createRules(int battlefieldWidth, int battlefieldHeight, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSize) {
-			return new BattleRules(battlefieldWidth, battlefieldHeight, numRounds, gunCoolingRate, inactivityTime,
+		public BattleRules createRules(BattlefieldSpecification battlefieldSpecification, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSize) {
+			return new BattleRules(battlefieldSpecification, numRounds, gunCoolingRate, inactivityTime,
 					hideEnemyNames, sentryBorderSize);
 		}
+	}
+
+	public double getBattlefieldHeight() {
+		
+		return battlefieldSpecification.getHeight();
+	}
+
+
+
+	public double getBattlefieldWidth() {
+	
+		return battlefieldSpecification.getWidth();
 	}
 }

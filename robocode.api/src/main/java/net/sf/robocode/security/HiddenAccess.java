@@ -15,6 +15,7 @@ import robocode.BattleRules;
 import robocode.Bullet;
 import robocode.Event;
 import robocode.RobotStatus;
+import robocode.control.BattlefieldSpecification;
 import robocode.control.RobotSpecification;
 import robocode.control.events.IBattleListener;
 import robocode.robotinterfaces.IBasicRobot;
@@ -226,8 +227,8 @@ public class HiddenAccess {
 				numRounds, time);
 	}
 
-	public static BattleRules createRules(int battlefieldWidth, int battlefieldHeight, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSize) {
-		return rulesHelper.createRules(battlefieldWidth, battlefieldHeight, numRounds, gunCoolingRate, inactivityTime,
+	public static BattleRules createRules(BattlefieldSpecification battlefieldSpecification, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSize) {
+		return rulesHelper.createRules(battlefieldSpecification, numRounds, gunCoolingRate, inactivityTime,
 				hideEnemyNames, sentryBorderSize);
 	}
 

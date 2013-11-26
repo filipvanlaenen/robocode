@@ -9,6 +9,8 @@ package net.sf.robocode.test.robots;
 
 
 import net.sf.robocode.test.helpers.RobocodeTestBed;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -16,6 +18,7 @@ import org.junit.Test;
  * @author Pavel Savara (original)
  */
 public class TestIncludeNamespaceAttack extends RobocodeTestBed {
+	@Ignore
 	@Test
 	public void run() {
 		super.run();

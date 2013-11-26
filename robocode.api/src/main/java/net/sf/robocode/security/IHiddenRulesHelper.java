@@ -9,11 +9,12 @@ package net.sf.robocode.security;
 
 
 import robocode.BattleRules;
+import robocode.control.BattlefieldSpecification;
 
 
 /**
  * @author Pavel Savara (original)
  */
 public interface IHiddenRulesHelper {
-	BattleRules createRules(int battlefieldWidth, int battlefieldHeight, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSizes);
+	BattleRules createRules(BattlefieldSpecification battlefieldSpecification, int numRounds, double gunCoolingRate, long inactivityTime, boolean hideEnemyNames, int sentryBorderSizes);
 }

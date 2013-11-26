@@ -14,6 +14,7 @@ import net.sf.robocode.security.HiddenAccess;
 import net.sf.robocode.serialization.ISerializableHelper;
 import net.sf.robocode.serialization.RbSerializer;
 import robocode.BattleRules;
+import robocode.control.RectangularBattlefieldSpecification;
 import robocode.control.RobotSpecification;
 
 import java.io.Serializable;
@@ -274,8 +275,7 @@ public final class RobotStatics implements IRobotStatics, Serializable {
 			String fullClassName = serializer.deserializeString(buffer);
 			String shortClassName = serializer.deserializeString(buffer);
 
-			BattleRules battleRules = HiddenAccess.createRules(serializer.deserializeInt(buffer), // battleFieldWidth
-					serializer.deserializeInt(buffer), // battleFieldHeight
+			BattleRules battleRules = HiddenAccess.createRules(RectangularBattlefieldSpecification.parseProperty(serializer.deserializeString(buffer)), // battlefieldSpecification
 					serializer.deserializeInt(buffer), // numOfRounds
 					serializer.deserializeDouble(buffer), // gunCoolingRate
 					serializer.deserializeLong(buffer), // inactivityTime

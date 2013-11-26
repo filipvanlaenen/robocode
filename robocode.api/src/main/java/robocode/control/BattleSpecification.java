@@ -18,14 +18,14 @@ public class BattleSpecification implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private final int battlefieldWidth;
-	private final int battlefieldHeight;
 	private final int numRounds;
 	private final double gunCoolingRate;
 	private final long inactivityTime;
 	private final boolean hideEnemyNames;
 	private final int sentryBorderSize;
 	private final RobotSpecification[] robots;
+
+	private final  BattlefieldSpecification battlefieldSpecification;
 
 	/**
 	 * Creates a new BattleSpecification with the given number of rounds, battlefield size, and robots.
@@ -81,9 +81,8 @@ public class BattleSpecification implements java.io.Serializable {
 	 * 
 	 * @since 1.9.0.0
 	 */
-	public BattleSpecification(BattlefieldSpecification battlefieldSize, int numRounds, long inactivityTime, double gunCoolingRate, int sentryBorderSize, boolean hideEnemyNames, RobotSpecification[] robots) {
-		this.battlefieldWidth = battlefieldSize.getWidth();
-		this.battlefieldHeight = battlefieldSize.getHeight();
+	public BattleSpecification(BattlefieldSpecification battlefieldSpecification, int numRounds, long inactivityTime, double gunCoolingRate, int sentryBorderSize, boolean hideEnemyNames, RobotSpecification[] robots) {
+		this.battlefieldSpecification = battlefieldSpecification;
 		this.numRounds = numRounds;
 		this.inactivityTime = inactivityTime;
 		this.gunCoolingRate = gunCoolingRate;
@@ -116,7 +115,7 @@ public class BattleSpecification implements java.io.Serializable {
 	 * @return the battlefield size for this battle.
 	 */
 	public BattlefieldSpecification getBattlefield() {
-		return new RectangularBattlefieldSpecification(battlefieldWidth, battlefieldHeight);
+		return battlefieldSpecification;
 	}
 
 	/**
@@ -170,5 +169,9 @@ public class BattleSpecification implements java.io.Serializable {
 		System.arraycopy(robots, 0, robotsCopy, 0, robots.length);
 
 		return robotsCopy;
+	}
+ 
+	public BattlefieldSpecification getBattlefieldSpecification() {
+			return battlefieldSpecification;
 	}
 }

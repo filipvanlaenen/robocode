@@ -19,10 +19,14 @@ package robocode.control;
  * @author Flemming N. Larsen (contributor)
  */
 public interface BattlefieldSpecification extends java.io.Serializable {
-  
-	int getWidth();
+
+	String toProperty();
 
 	int getHeight();
 
+	int getWidth();
+  
+	
+ 
 	
 }

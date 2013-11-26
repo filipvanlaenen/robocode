@@ -88,7 +88,7 @@ public final class Battle extends BaseBattle {
 
 	public void setup(RobotSpecification[] battlingRobotsList, BattleProperties battleProps, boolean paused) {
 		isPaused = paused;
-		battleRules = HiddenAccess.createRules(battleProps.getBattlefieldWidth(), battleProps.getBattlefieldHeight(),
+		battleRules = HiddenAccess.createRules(battleProps.getBattlefieldSpecification(),
 				battleProps.getNumRounds(), battleProps.getGunCoolingRate(), battleProps.getInactivityTime(),
 				battleProps.getHideEnemyNames(), battleProps.getSentryBorderSize());
 		robotsCount = battlingRobotsList.length;

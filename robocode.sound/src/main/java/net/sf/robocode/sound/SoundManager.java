@@ -349,7 +349,7 @@ public class SoundManager implements ISoundManager {
 		@Override
 		public void onTurnEnded(TurnEndedEvent event) {
 			if (isSoundEnabled()) {
-				int battleFieldWidth = battleManager.getBattleProperties().getBattlefieldWidth();
+				int battleFieldWidth = battleManager.getBattleProperties().getBattlefieldSpecification().getWidth();
 
 				for (IBulletSnapshot bp : event.getTurnSnapshot().getBullets()) {
 					if (bp.getFrame() == 0) {

@@ -11,6 +11,7 @@ package tested.robots;
 import net.sf.robocode.security.HiddenAccess;
 import robocode.AdvancedRobot;
 import robocode.ScannedRobotEvent;
+import robocode.control.RectangularBattlefieldSpecification;
 
 
 /**
@@ -36,7 +37,7 @@ public class IncludeNamespaceAttack extends AdvancedRobot {
 
 	private void namespaceAttack() {
 		try {
-			HiddenAccess.createRules(10, 10, 10, 10, 1, false, 100);
+			HiddenAccess.createRules(new RectangularBattlefieldSpecification(10, 10), 10, 10, 1, false, 100);
 		} catch (Throwable e) {
 			// Swallow security exception
 			e.printStackTrace(out);

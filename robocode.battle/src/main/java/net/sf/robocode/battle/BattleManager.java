@@ -87,8 +87,7 @@ public class BattleManager implements IBattleManager {
 	// Called from the RobocodeEngine
 	public void startNewBattle(BattleSpecification spec, String initialPositions, boolean waitTillOver, boolean enableCLIRecording) {
 		battleProperties = new BattleProperties();
-		battleProperties.setBattlefieldWidth(spec.getBattlefield().getWidth());
-		battleProperties.setBattlefieldHeight(spec.getBattlefield().getHeight());
+		battleProperties.setBattlefieldSpecification(spec.getBattlefieldSpecification()); 
 		battleProperties.setGunCoolingRate(spec.getGunCoolingRate());
 		battleProperties.setInactivityTime(spec.getInactivityTime());
 		battleProperties.setNumRounds(spec.getNumRounds());

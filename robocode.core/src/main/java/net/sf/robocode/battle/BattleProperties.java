@@ -10,6 +10,8 @@ package net.sf.robocode.battle;
 
 import robocode.AdvancedRobot;
 import robocode.Robot;
+import robocode.control.BattlefieldSpecification;
+import robocode.control.RectangularBattlefieldSpecification;
 import robocode.control.RobotSpecification;
 
 import java.io.FileInputStream;
@@ -28,8 +30,7 @@ public class BattleProperties implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private final static String
-			BATTLEFIELD_WIDTH = "robocode.battleField.width",
-			BATTLEFIELD_HEIGHT = "robocode.battleField.height",
+			BATTLEFIELD_SPECIFICATION = "robocode.battlefieldSpecification",
 			BATTLE_NUMROUNDS = "robocode.battle.numRounds",
 			BATTLE_GUNCOOLINGRATE = "robocode.battle.gunCoolingRate",
 			BATTLE_RULES_INACTIVITYTIME = "robocode.battle.rules.inactivityTime",
@@ -38,8 +39,6 @@ public class BattleProperties implements Serializable {
 			BATTLE_INITIAL_POSITIONS = "robocode.battle.initialPositions",
 			SENTRY_BORDER_SIZE = "robocode.sentryBorderSize";
 
-	private int battlefieldWidth = 800;
-	private int battlefieldHeight = 600;
 	private int numRounds = 10;
 	private double gunCoolingRate = 0.1;
 	private long inactivityTime = 450;
@@ -50,43 +49,19 @@ public class BattleProperties implements Serializable {
 
 	private final Properties props = new Properties();
 
-	/**
-	 * Gets the battlefieldWidth.
-	 *
-	 * @return Returns a int
-	 */
-	public int getBattlefieldWidth() {
-		return battlefieldWidth;
+	private BattlefieldSpecification battlefieldSpecification = new RectangularBattlefieldSpecification(800, 600);
+
+
+
+	
+	public void setBattlefieldSpecification(BattlefieldSpecification battlefieldSpecification) {
+		this.battlefieldSpecification = battlefieldSpecification;
+		props.setProperty(BATTLEFIELD_SPECIFICATION, battlefieldSpecification.toProperty());
 	}
 
-	/**
-	 * Sets the battlefieldWidth.
-	 *
-	 * @param battlefieldWidth The battlefieldWidth to set
-	 */
-	public void setBattlefieldWidth(int battlefieldWidth) {
-		this.battlefieldWidth = battlefieldWidth;
-		props.setProperty(BATTLEFIELD_WIDTH, "" + battlefieldWidth);
-	}
 
-	/**
-	 * Gets the battlefieldHeight.
-	 *
-	 * @return Returns a int
-	 */
-	public int getBattlefieldHeight() {
-		return battlefieldHeight;
-	}
 
-	/**
-	 * Sets the battlefieldHeight.
-	 *
-	 * @param battlefieldHeight The battlefieldHeight to set
-	 */
-	public void setBattlefieldHeight(int battlefieldHeight) {
-		this.battlefieldHeight = battlefieldHeight;
-		props.setProperty(BATTLEFIELD_HEIGHT, "" + battlefieldHeight);
-	}
+
 
 	/**
 	 * Gets the numRounds.
@@ -289,8 +264,7 @@ public class BattleProperties implements Serializable {
 
 	public void load(FileInputStream in) throws IOException {
 		props.load(in);
-		battlefieldWidth = Integer.parseInt(props.getProperty(BATTLEFIELD_WIDTH, "800"));
-		battlefieldHeight = Integer.parseInt(props.getProperty(BATTLEFIELD_HEIGHT, "600"));
+		battlefieldSpecification = RectangularBattlefieldSpecification.parseProperty(props.getProperty(BATTLEFIELD_SPECIFICATION, "800×600"));
 		gunCoolingRate = Double.parseDouble(props.getProperty(BATTLE_GUNCOOLINGRATE, "0.1"));
 		inactivityTime = Long.parseLong(props.getProperty(BATTLE_RULES_INACTIVITYTIME, "450"));
 		hideEnemyNames = Boolean.parseBoolean(props.getProperty(BATTLE_HIDE_ENEMY_NAMES, "false"));
@@ -299,4 +273,14 @@ public class BattleProperties implements Serializable {
 		initialPositions = props.getProperty(BATTLE_INITIAL_POSITIONS, "");
 		sentryBorderSize = Integer.parseInt(props.getProperty(SENTRY_BORDER_SIZE, "100"));
 	}
+
+
+
+
+
+	public BattlefieldSpecification getBattlefieldSpecification() {
+		return battlefieldSpecification;
+	}
+
+
 }

@@ -1,6 +1,8 @@
 package robocode.control;
 
 public class RectangularBattlefieldSpecification implements BattlefieldSpecification {
+	private static final String TIMES = "×";
+
 	private static final long serialVersionUID = 1L;
 
 	private final int width;
@@ -48,5 +50,18 @@ public class RectangularBattlefieldSpecification implements BattlefieldSpecifica
 	 */
 	public int getHeight() {
 		return height;
+	}
+
+	public static BattlefieldSpecification parseProperty(String property) {
+	int times = property.indexOf(TIMES);
+	String widthString = property.substring(0, times);
+	String heightString = property.substring(times + 1);
+	return new RectangularBattlefieldSpecification(Integer.parseInt(widthString), Integer.parseInt(heightString));
+		
+	}
+
+	@Override
+	public String toProperty() {
+			return width + TIMES +height;
 	}
 }
