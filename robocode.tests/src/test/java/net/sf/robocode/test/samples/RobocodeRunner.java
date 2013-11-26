@@ -38,7 +38,7 @@ public class RobocodeRunner {
 		// Setup the battle specification
 
 		int numberOfRounds = 5;
-		BattlefieldSpecification battlefield = new BattlefieldSpecification(800, 600); // 800x600
+		BattlefieldSpecification battlefield = new RectangularBattlefieldSpecification(800, 600); // 800x600
 		RobotSpecification[] selectedRobots = engine.getLocalRepository("sample.RamFire, sample.Corners");
 
 		BattleSpecification battleSpec = new BattleSpecification(numberOfRounds, battlefield, selectedRobots);

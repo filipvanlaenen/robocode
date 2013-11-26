@@ -29,7 +29,7 @@ import java.util.Random;
  */
 public abstract class RobocodeTestBed extends BattleAdaptor {
 	protected static final IRobocodeEngine engine;
-	protected final BattlefieldSpecification battleFieldSpec = new BattlefieldSpecification();
+	protected final BattlefieldSpecification battleFieldSpec = new RectangularBattlefieldSpecification();
 	protected static int errors = 0;
 	protected static StringBuilder errorText = new StringBuilder();
 	protected static int messages = 0;

@@ -116,7 +116,7 @@ public class BattleSpecification implements java.io.Serializable {
 	 * @return the battlefield size for this battle.
 	 */
 	public BattlefieldSpecification getBattlefield() {
-		return new BattlefieldSpecification(battlefieldWidth, battlefieldHeight);
+		return new RectangularBattlefieldSpecification(battlefieldWidth, battlefieldHeight);
 	}
 
 	/**

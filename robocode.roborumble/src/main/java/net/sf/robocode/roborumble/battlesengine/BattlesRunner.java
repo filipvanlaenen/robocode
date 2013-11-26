@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2003-2013 Albert Pérez and RoboRumble contributors
+ * Copyright (c) 2003-2013 Albert Pï¿½rez and RoboRumble contributors
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ import java.util.*;
  * Reads a file with the battles to be runned and outputs the results in another file.
  * Controlled by properties files.
  *
- * @author Albert Pérez (original)
+ * @author Albert Pï¿½rez (original)
  * @author Flemming N. Larsen (contributor)
  * @author Joachim Hofer (contributor)
  */
@@ -72,7 +72,7 @@ public class BattlesRunner {
 	
 	public void runBattlesImpl(boolean melee) {
 		// Initialize objects
-		BattlefieldSpecification field = new BattlefieldSpecification(fieldlen, fieldhei);
+		BattlefieldSpecification field = new RectangularBattlefieldSpecification(fieldlen, fieldhei);
 		BattleSpecification battle = new BattleSpecification(numrounds, field, (new RobotSpecification[2]));
 
 		// Read input file
