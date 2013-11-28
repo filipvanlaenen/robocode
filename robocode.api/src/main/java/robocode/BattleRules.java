@@ -145,4 +145,9 @@ public final class BattleRules implements java.io.Serializable {
 	
 		return battlefieldSpecification.getWidth();
 	}
+	
+	public double getBattlefieldWallWidth() {
+		
+		return battlefieldSpecification.getWidth() /2;
+	}
 }

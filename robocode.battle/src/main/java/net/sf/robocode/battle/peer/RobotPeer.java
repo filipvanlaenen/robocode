@@ -1073,7 +1073,7 @@ public final class RobotPeer implements IRobotPeerBattle, IRobotPeer {
 		int minY = 0 + HALF_HEIGHT_OFFSET;
 		int maxX = (int) getBattleFieldWidth() - HALF_WIDTH_OFFSET;
 		int maxY = (int) getBattleFieldHeight() - HALF_HEIGHT_OFFSET;
-		int halfWidth = (int) getBattleFieldWidth()/2;
+		int wallWidth = (int) getBattleFieldWallWidth();
 
 		boolean hitWall = false;
 		double adjustX = 0, adjustY = 0;
@@ -1083,17 +1083,17 @@ public final class RobotPeer implements IRobotPeerBattle, IRobotPeer {
 			hitWall = true;
 			adjustX = minX - x;
 			angle = normalRelativeAngle(3 * PI / 2 - bodyHeading);
-		} else if (y >= 50 && y <= getBattleFieldHeight() - 50 && x > halfWidth && x < halfWidth + minX) {
+		} else if (y >= 50 && y <= getBattleFieldHeight() - 50 && x > wallWidth && x < wallWidth + minX) {
 			hitWall = true;
-			adjustX = halfWidth + minX - x;
+			adjustX = wallWidth + minX - x;
 			angle = normalRelativeAngle(3 * PI / 2 - bodyHeading);
 		} else if (x > maxX ) {
 			hitWall = true;
 			adjustX = maxX - x;
 			angle = normalRelativeAngle(PI / 2 - bodyHeading);
-		} else if (y >= 50 && y <= getBattleFieldHeight() - 50 && x < halfWidth && x > halfWidth - minX ) {
+		} else if (y >= 50 && y <= getBattleFieldHeight() - 50 && x < wallWidth && x > wallWidth - minX ) {
 			hitWall = true;
-			adjustX = halfWidth - minX - x;
+			adjustX = wallWidth - minX - x;
 			angle = normalRelativeAngle(PI / 2 - bodyHeading);
 
 		} else if (y < minY) {
@@ -1249,6 +1249,10 @@ public final class RobotPeer implements IRobotPeerBattle, IRobotPeer {
 
 	private double getBattleFieldWidth() {
 		return battleRules.getBattlefieldWidth();
+	}
+	
+	private double getBattleFieldWallWidth () {
+		return battleRules.getBattlefieldWallWidth();
 	}
 
 	public void updateBoundingBox() {
